@@ -1148,7 +1148,7 @@ BitcoinTopologyHelper::BitcoinTopologyHelper (uint32_t noCpus, uint32_t totalNoN
         YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
         YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();
 //        phy.Set ("RxGain", DoubleValue (0) );
-//        phy.SetChannel(channel.Create ());
+        phy.SetChannel(channel.Create ());
 
         //New: setting up MAC layer configuration
         uint32_t rtsThreshold = 2346;
@@ -1253,7 +1253,7 @@ BitcoinTopologyHelper::BitcoinTopologyHelper (uint32_t noCpus, uint32_t totalNoN
           YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
           YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();
 //          phy.Set ("RxGain", DoubleValue (0) );
-//          phy.SetChannel(channel.Create ());
+          phy.SetChannel(channel.Create ());
 
           //New: setting up MAC layer configuration
           uint32_t rtsThreshold = 2346;
