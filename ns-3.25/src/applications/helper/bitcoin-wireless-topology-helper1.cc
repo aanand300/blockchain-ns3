@@ -1170,6 +1170,7 @@ BitcoinTopologyHelper::BitcoinTopologyHelper (uint32_t noCpus, uint32_t totalNoN
             phy.Set ("TxPowerStart", DoubleValue (minPower));
             phy.Set ("TxPowerEnd", DoubleValue (maxPower));
             phy.Set ("TxPowerLevels", UintegerValue (powerLevels));
+            phy.Set ("TxPowerLevels", UintegerValue (powerLevels));
             mac.SetType ("ns3::ApWifiMac",
                          "Ssid", SsidValue (ssid));
             newDevices.Add (wifi.Install(phy, mac, m_nodes.at (*miner).Get (0)));
