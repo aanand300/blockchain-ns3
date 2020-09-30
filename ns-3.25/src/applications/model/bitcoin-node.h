@@ -24,7 +24,7 @@ class Socket;
 class Packet;
 
  
-class BitcoinNode : public Application 
+class BitcoinNode : public Application
 {
 public:
 
@@ -85,6 +85,17 @@ public:
    */
   void SetProtocolType (enum ProtocolType protocolType);
 
+  /**
+   * function to return throughput (Bytes) in each time slot (NOTE:- this is static member function)
+   * Thus to Callback this function, object pointer is not needed
+   * */
+  static void PrintThroughput(double st, long step_time);
+
+  /**
+   * Function to print Node-wise throughput stored in a map
+   * */
+  static void PrintNode_SlotThroughput(long step_time, int tpfidx);
+
 protected:
   virtual void DoDispose (void);           // inherited from Application base class.
 
@@ -121,26 +132,26 @@ protected:
    * \param blockInfo the block message info 
    * \param from the address the connection is from
    */
-  void ReceivedBlockMessage(std::string &blockInfo, Address &from);	
+  void ReceivedBlockMessage(std::string &blockInfo, Address &from); 
 
   /**
    * \brief Handle an incoming CHUNK Message.
    * \param chunkInfo the chunk message info 
    * \param from the address the connection is from
    */
-  void ReceivedChunkMessage(std::string &chunkInfo, Address &from);		
+  void ReceivedChunkMessage(std::string &chunkInfo, Address &from);   
 
   /**
    * \brief Called when a new block non-orphan block is received
    * \param newBlock the newly received block
    */
-  virtual void ReceiveBlock(const Block &newBlock);				                   
+  virtual void ReceiveBlock(const Block &newBlock);                          
   
   /**
    * \brief Called when the last chunk of a block is received
    * \param newBlock the newly received block
    */
-  void ReceivedLastChunk(const Block &newBlock);				           
+  void ReceivedLastChunk(const Block &newBlock);                   
 
   /**
    * \brief Sends a BLOCK message as a response to a GET_DATA message
@@ -154,13 +165,13 @@ protected:
    * \param packetInfo the info of the CHUNK message
    * \param from the address the EXT_GET_DATA/CHUNK was received from
    */
-  void SendChunk(std::string packetInfo, Address &from);				   
+  void SendChunk(std::string packetInfo, Address &from);           
 
   /**
    * \brief Called for blocks with higher score(height)
    * \param newBlock the new block with higher score
    */
-  virtual void ReceivedHigherBlock(const Block &newBlock);	
+  virtual void ReceivedHigherBlock(const Block &newBlock);  
 
   /**
    * \brief Validates new Blocks by calculating the necessary time interval
@@ -325,11 +336,11 @@ protected:
   Address         m_local;                            //!< Local address to bind to
   TypeId          m_tid;                              //!< Protocol TypeId
   int             m_numberOfPeers;                    //!< Number of node's peers
-  double		  m_meanBlockReceiveTime;             //!< The mean time interval between two consecutive blocks (should be around 10min for bitcoin)
-  double		  m_previousBlockReceiveTime;         //!< The time that the node received the previous block
-  double		  m_meanBlockPropagationTime;         //!< The mean time that the node has to wait in order to receive a newly mined block
-  double		  m_meanBlockSize;                    //!< The mean block size
-  Blockchain 	  m_blockchain;                       //!< The node's blockchain
+  double      m_meanBlockReceiveTime;             //!< The mean time interval between two consecutive blocks (should be around 10min for bitcoin)
+  double      m_previousBlockReceiveTime;         //!< The time that the node received the previous block
+  double      m_meanBlockPropagationTime;         //!< The mean time that the node has to wait in order to receive a newly mined block
+  double      m_meanBlockSize;                    //!< The mean block size
+  Blockchain    m_blockchain;                       //!< The node's blockchain
   Time            m_invTimeoutMinutes;                //!< The block timeout in minutes
   bool            m_isMiner;                          //!< True if the node is also a miner, False otherwise
   double          m_downloadSpeed;                    //!< The download speed of the node in Bytes/s
