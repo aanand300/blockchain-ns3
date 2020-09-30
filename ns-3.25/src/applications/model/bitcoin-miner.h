@@ -92,7 +92,7 @@ public:
   /**
    * Set fixed Block Generation binSize
    */
-  void SetBlockGenParameter (double blockGenParameter); 
+  void SetBlockGenParameter (double blockGenParameter);
 
   /**
    * \return fixed hash rate
@@ -130,28 +130,28 @@ protected:
    * \brief Called for blocks with better score(height). Removes m_nextMiningEvent and call MineBlock again.
    * \param newBlock the new block which was received
    */
-  virtual void ReceivedHigherBlock(const Block &newBlock);	
+  virtual void ReceivedHigherBlock(const Block &newBlock);  
 
   /**
    * \brief Sends a BLOCK message as a response to a GET_DATA message
    * \param packetInfo the info of the BLOCK message
    * \param to the socket of the receiving peer
    */
-  void SendBlock(std::string packetInfo, Ptr<Socket> to);				   
+  void SendBlock(std::string packetInfo, Ptr<Socket> to);          
 
   int               m_noMiners;                
-  uint32_t          m_fixedBlockSize;  
-  double            m_fixedBlockTimeGeneration; 	//!< Fixed Block Time Generation
-  EventId           m_nextMiningEvent; 				//!< Event to mine the next block
+  uint32_t          m_fixedBlockSize;
+  double            m_fixedBlockTimeGeneration;   //!< Fixed Block Time Generation
+  EventId           m_nextMiningEvent;        //!< Event to mine the next block
   std::default_random_engine m_generator;
 
   /** 
    * The m_blockGenBinSize states binSize of the block generation time.
    * In the paper "Misbehaviour In Bitcoin" is stated when the binSize is 2mins the parameter is 0.19.
    * According to that we calculate the the new parameter as 0.183*m_blockGenBinSize/2 to achieve better granularity
-   */   
-  double            m_blockGenBinSize;	
-  double            m_blockGenParameter; 			//!< The block generation distribution parameter
+   */
+  double            m_blockGenBinSize;  
+  double            m_blockGenParameter;      //!< The block generation distribution parameter
   double            m_nextBlockTime;
   double            m_previousBlockGenerationTime;
   double            m_minerAverageBlockGenInterval;
